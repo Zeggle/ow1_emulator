@@ -246,6 +246,7 @@ rule "[doomfist.opy]: Detect uppercut victims":
 
     getUppercuttingPlayers()[0].uppercut_victims.append(eventPlayer)
     damage(eventPlayer, getUppercuttingPlayers()[0], OW1_DOOMFIST_RISING_UPPERCUT_DAMAGE)
+    getUppercuttingPlayers()[0].addHealthPool(Health.SHIELDS, OW1_DOOMFIST_BEST_DEFENSE_SHIELDS, false, false)
     playEffect(getAllPlayers(), DynamicEffect.BAD_EXPLOSION, Color.WHITE, eventPlayer, 1)
     playEffect(getAllPlayers(), DynamicEffect.EXPLOSION_SOUND, Color.WHITE, eventPlayer, 100)
     eventPlayer.applyImpulse(Vector.UP, 15, Relativity.TO_PLAYER, Impulse.CANCEL_CONTRARY_MOTION_XYZ)
