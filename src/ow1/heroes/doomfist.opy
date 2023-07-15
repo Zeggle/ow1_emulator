@@ -472,3 +472,15 @@ rule "[doomfist.opy]: Deal OW1 hand cannon damage":
     @Condition eventAbility == Button.PRIMARY_FIRE
 
     damage(victim, attacker, eventDamage*(OW1_DOOMFIST_HAND_CANNON_DAMAGE/OW2_DOOMFIST_HAND_CANNON_DAMAGE)-eventDamage) # Deal additional damage to match OW1 damage
+
+
+rule "[doomfist.opy]: Decay shields":
+    @Event eachPlayer
+    @Hero doomfist
+    @Condition eventPlayer.getHealthOfType(Health.SHIELDS) > 0
+
+    wait(1)
+    while (eventPlayer.getHealthOfType(Health.SHIELDS) > 0):
+        damage(eventPlayer, null, 1)
+        heal(eventPlayer, null, 0.001)
+        wait(1/OW1_DOOMFIST_BEST_DEFENSE_DECAY)
